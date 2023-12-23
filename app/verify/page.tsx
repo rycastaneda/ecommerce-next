@@ -4,7 +4,7 @@ export default function VerifyPage() {
       <h1>Verify page</h1>
       <p>
         This page is intended to verify that Redux state is persisted across
-        page navigations.
+        page navigations. ldksfgldskl;gf
       </p>
     </>
   )

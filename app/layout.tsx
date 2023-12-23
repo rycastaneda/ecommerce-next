@@ -1,3 +1,4 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 /* Components */
 import { Providers } from '@/lib/providers'
 import { Nav } from './components/Nav'
@@ -5,60 +6,25 @@ import { Nav } from './components/Nav'
 /* Instruments */
 import styles from './styles/layout.module.css'
 import './styles/globals.css'
+import { ContactUsBanner } from './components/ContactUsBanner'
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <Providers>
       <html lang="en">
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&display=swap" rel="stylesheet" />
+        </head>
         <body>
           <section className={styles.container}>
+            <ContactUsBanner />
             <Nav />
-
-            <header className={styles.header}>
-              <img src="/logo.svg" className={styles.logo} alt="logo" />
-            </header>
-
-            <main className={styles.main}>{props.children}</main>
-
-            <footer className={styles.footer}>
-              <span>Learn </span>
-              <a
-                className={styles.link}
-                href="https://reactjs.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                React
-              </a>
-              <span>, </span>
-              <a
-                className={styles.link}
-                href="https://redux.js.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Redux
-              </a>
-              <span>, </span>
-              <a
-                className={styles.link}
-                href="https://redux-toolkit.js.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Redux Toolkit
-              </a>
-              ,<span> and </span>
-              <a
-                className={styles.link}
-                href="https://react-redux.js.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                React Redux
-              </a>
-            </footer>
           </section>
+          <main className={styles.main}>
+            <AppRouterCacheProvider>{props.children}</AppRouterCacheProvider>
+          </main>
         </body>
       </html>
     </Providers>

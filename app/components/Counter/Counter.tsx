@@ -1,7 +1,7 @@
 'use client'
 
 /* Core */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /* Instruments */
 import {
@@ -18,6 +18,10 @@ export const Counter = () => {
   const dispatch = useDispatch()
   const count = useSelector(selectCount)
   const [incrementAmount, setIncrementAmount] = useState(2)
+
+  useEffect(() => {
+    dispatch(incrementAsync(incrementAmount))
+  }, [])
 
   return (
     <div>
