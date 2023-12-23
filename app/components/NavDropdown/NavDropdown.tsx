@@ -12,12 +12,14 @@ interface NavDropdownProps {
     buttonText?: string,
     buttonComponent?: ReactJSXElement,
     options: string[],
+    classExt?: string
 }
 
 const NavDropdown: React.FunctionComponent<NavDropdownProps> = ({
   buttonText,
   buttonComponent,
-  options 
+  options,
+  classExt
 }) => {
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
@@ -26,7 +28,7 @@ const NavDropdown: React.FunctionComponent<NavDropdownProps> = ({
   };
 
   return (
-    <div className="pl-2">
+    <div className={`pl-2 ${classExt ?? ''}`}>
       <Dropdown>
         <MenuButton>
         {buttonText && <span className="pr-1">{buttonText} </span>}

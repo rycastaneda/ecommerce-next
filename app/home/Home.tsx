@@ -35,12 +35,12 @@ export const Home = () => {
   const showNext = useSelector(selectShowNext)
 
   return (
-    <div className='container mx-auto'>
-      <div className="my-16">
+    <div className='container mx-auto px-4'>
+      <div className="lg:my-16 my-8">
         <CategoryCards categories={categories}/>
       </div>
-      <div className="my-16">
-        <div className='text-center mb-16 font-bold'>
+      <div className="lg:my-16 my-8">
+        <div className='text-center mb-8 lg:mb-16 font-bold'>
           <p className="text-gray text-lg pb-2">Featured Products</p>
           <h2 className='text-xl font-bold pb-2'>BESTSELLER PRODUCTS</h2>
           <span className="text-gray">Problems trying to resolve the conflict between </span>

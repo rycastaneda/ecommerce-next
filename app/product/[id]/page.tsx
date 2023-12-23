@@ -67,8 +67,8 @@ export default function ProductDetailPage() {
     <ThemeProvider theme={theme}>
 
       {productDetail &&
-        <div className='container mx-auto my-10'>
-          <div className="gap-8 grid grid-cols-2">
+        <div className='container px-4 lg:mx-auto lg:my-10 my-6'>
+          <div className="lg:gap-8 lg:grid lg:grid-cols-2">
             {
               productsState === 'loading' ? <Skeleton variant="rectangular" width={`100%`} height={`100%`} />
                 : <ProductImages thumbnail={productDetail.thumbnail} images={productDetail.images} />
@@ -88,10 +88,10 @@ export default function ProductDetailPage() {
             }
 
           </div>
-          <div className='mx-auto w-max items-center text-gray py-8 font-bold flex space-x-8'>
-            <Link href="#" className="py=4">Description</Link>
-            <Link href="#" className="py=4">Additional Info</Link>
-            <Link href="#" className="py=4">Reviews <span>(0)</span></Link>
+          <div className='mx-auto w-max items-center text-gray py-8 font-bold flex lg:space-x-8 space-x-4'>
+            <Link href="#">Description</Link>
+            <Link href="#">Additional Info</Link>
+            <Link href="#">Reviews <span>(0)</span></Link>
           </div>
           <div className="py-4">
             <Description productDetail={productDetail} />

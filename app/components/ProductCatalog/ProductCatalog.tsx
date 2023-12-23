@@ -20,7 +20,7 @@ const ProductCatalog: FunctionComponent<ProductCatalogProps> = ({
 
   return (
     <div className='container'>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="lg:grid lg:grid-cols-5 gap-4">
         {productRender}
         {loading && 
           Array.from(Array(10).keys()).map(count => {
@@ -35,9 +35,11 @@ const ProductCatalog: FunctionComponent<ProductCatalogProps> = ({
           })
         }
       </div>
-      <div className='text-center py-8 font-bold'>
-        {showNext && <Button variant="outlined" onClick={loadNext}> Load Next Products</Button>}
-      </div>
+      {showNext && 
+        <div className='text-center py-8 font-bold'>
+          <Button variant="outlined" onClick={loadNext}> Load Next Products</Button>}
+        </div>
+      }
     </div>
   );
 }

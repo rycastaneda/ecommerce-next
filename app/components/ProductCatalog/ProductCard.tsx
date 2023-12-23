@@ -9,7 +9,7 @@ interface ProductCardProps extends Product {
 const ProductCard: FunctionComponent<ProductCardProps> = ({ id, title, brand, description, discountPercentage, price, thumbnail, images, classNameExt }) => {
   const discountedPrice = price - (price * discountPercentage / 100)
   return (
-    <div className={`relative font-bold bg-center p-4 ${classNameExt ?? ''}`}>
+    <div className={`relative font-bold bg-center lg:text-left text-center p-4 ${classNameExt ?? ''}`}>
       <div className='h-59 flex items-center'>
         <img src={thumbnail} className='h-full mx-auto aspect-square' alt={description} />
       </div>

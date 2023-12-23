@@ -11,8 +11,8 @@ const Description: FunctionComponent<DescriptionProps> = ({
   const { thumbnail, description, title } = productDetail
 
   return (
-    <section role="description" className="flex">
-      <div className="w-2/3">
+    <section role="description" className="flex lg:flex-row flex-col">
+      <div className="lg:w-2/3 w-full">
         <p className="font-bold">{title}</p>
         {description}
       </div>

@@ -18,7 +18,7 @@ export default function CartPage() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="my-10 mx-auto container">
+      <div className="my-10 px-4 lg:px-0 lg:mx-auto container">
         {cartStatus === 'loaded' && <Cart cartItems={cartItems} onIncrement={onIncrement} onDecrement={onDecrement}/>}
       </div>
     </ThemeProvider>

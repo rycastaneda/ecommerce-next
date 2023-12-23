@@ -33,7 +33,7 @@ const WishlistPopup: FunctionComponent<WishlistPopupProps> = ({
     <ThemeProvider theme={theme}>
       <Dropdown>
         <MenuButton>
-          <FavoriteIcon className="text-primary"/>
+          <FavoriteIcon className={`${wishlistItems.length ? 'text-primary' : 'text-gray'}`}/>
           <span className="px-1">{wishlistItems.length}</span>
         </MenuButton>
         <Menu slots={{ listbox: Listbox }}>
