@@ -1,5 +1,4 @@
 export * from './cartSlice'
 export * from './wishlistSlice'
-export * from './counterSlice'
 export * from './productSlice'
 export * from './productDetailSlice'

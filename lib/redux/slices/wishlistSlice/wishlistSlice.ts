@@ -17,7 +17,7 @@ export const wishlistSlice = createSlice({
         return;
       }
       
-      state.items = state.items.concat(action.payload)
+      state.items = [action.payload, ...state.items]
       window.localStorage.setItem('wishlist', JSON.stringify(state.items))
     },
     delete: (state, action: PayloadAction<number>) => {

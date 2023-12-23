@@ -10,14 +10,14 @@ import NavDropdown from './NavDropdown/NavDropdown'
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useCart } from './Cart'
 import WishlistPopup from './Wishlist/WishlistPopup'
-import useWishlist from '../product/[id]/useWishlist'
+import useWishlist from './Wishlist/useWishlist'
+import CartPopup from './Cart/CartPopup'
 export const Nav = () => {
   const pathname = usePathname()
   
-  const {cartItems, cartStatus} = useCart(null);
+  const {cartItems, onRemove: onRemoveCart} = useCart(null);
   const {wishlistItems, onRemove} = useWishlist(null)
 
   return (
@@ -75,10 +75,7 @@ export const Nav = () => {
           <Link href="/search" className="text-primary px-3 ml-auto lg:ml-0">
             <SearchIcon/>
           </Link>
-          { cartStatus === 'loaded' && <Link href="/cart" className={`${cartItems.length ? 'text-primary' : 'text-gray'} px-4`}>
-            <ShoppingCartIcon/>
-            <span className="px-1">{cartItems.length}</span>
-          </Link>}
+          <CartPopup cartItems={cartItems} onRemove={onRemoveCart}/>
           <WishlistPopup wishlistItems={wishlistItems} onRemove={onRemove}/>
         </div>
       </nav>

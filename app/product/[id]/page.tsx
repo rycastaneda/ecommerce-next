@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react';
 import { useParams } from "next/navigation";
 import { ThemeProvider, createTheme, Skeleton, Alert } from '@mui/material'
 import { ProductDetail, ProductImages } from "@/app/components/Product";
@@ -7,9 +6,10 @@ import Description from "@/app/components/Product/Description";
 import Link from "next/link";
 import { ProductCatalog } from "@/app/components/ProductCatalog";
 import useProductDetails from "./useProductDetails";
-import useWishlist from "./useWishlist";
 import { useCart } from "@/app/components/Cart";
 import { Snackbar } from '@mui/material';
+import { useWishlist } from '@/app/components/Wishlist';
+import { useEffect } from "react";
 
 const theme = createTheme({
   palette: {
@@ -44,24 +44,18 @@ export default function ProductDetailPage() {
 
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    console.log('reason', reason);
-    // if (reason === 'clickaway') {
-
-    //   return;
-    // }
-
     setShowCartMessage(false);
   };
 
   const handleWishlistClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    console.log('reason', reason);
-    // if (reason === 'clickaway') {
-
-    //   return;
-    // }
-
     setShowWishlistMessage(false);
   };
+
+  useEffect(() => {
+    if(productDetail) {
+      document.title = `Ecommerce - ${productDetail?.title}`
+    }
+  }, [productDetail])
 
   return (
     <ThemeProvider theme={theme}>
@@ -109,14 +103,14 @@ export default function ProductDetailPage() {
             autoHideDuration={6000}
             onClose={handleClose}
           >
-            <Alert severity="success">Item added to cart</Alert>
+            <Alert severity="success" sx={{ width: '100%' }}>Item added to cart</Alert>
           </Snackbar>
           <Snackbar
             open={showWishlistMessage}
             autoHideDuration={6000}
             onClose={handleWishlistClose}
           >
-            <Alert severity="success">Item added to wishlist</Alert>
+            <Alert severity="success" sx={{ width: '100%' }}>Item added to wishlist</Alert>
           </Snackbar>
         </div>
       }
@@ -124,3 +118,4 @@ export default function ProductDetailPage() {
 
   )
 }
+

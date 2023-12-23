@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
         return;
       }
 
-      state.items = state.items.concat(action.payload)
+      state.items = [action.payload, ...state.items]
       window.localStorage.setItem('cart', JSON.stringify(state.items))
     },
     delete: (state, action: PayloadAction<number>) => {
@@ -72,7 +72,7 @@ export const cartSlice = createSlice({
   // },
 })
 
-export interface CartItem extends Partial<Product>{
+export interface CartItem extends Product {
   quantity: number,
 } 
 /* Types */

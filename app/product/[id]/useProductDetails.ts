@@ -1,4 +1,4 @@
-import {  fetchProductDetailThunk, fetchProductsThunk, selectProductDetail, selectProductDetailState, selectProducts } from '@/lib/redux';
+import {  fetchProductDetailThunk, fetchProductsThunk, productSlice, selectProductDetail, selectProductDetailState, selectProducts } from '@/lib/redux';
 import { useAppDispatch } from '@/lib/redux/createAppAsyncThunk';
 import { Product } from '@/lib/redux/slices/productSlice/type';
 import { useEffect } from 'react';
@@ -25,13 +25,13 @@ const useProductDetails = (params: { id: string; } | null): {
   }
 
   useEffect(() => {
-    console.log('params', params);
     if (params) {
       dispatch(fetchProductDetailThunk(+params.id))
     }
   }, [params])
 
   useEffect(() => {
+    dispatch(productSlice.actions.reset())
     dispatch(fetchProductsThunk())
   }, [])
 

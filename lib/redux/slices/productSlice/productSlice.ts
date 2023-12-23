@@ -15,7 +15,14 @@ const initialState: ProductSliceState = {
 export const productSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.products = []
+      state.page = 1
+      state.totalPage = 1
+      state.status = 'idle'
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsThunk.pending, (state) => {
@@ -25,7 +32,7 @@ export const productSlice = createSlice({
         state.status = 'idle'
         state.products = state.products.concat(action.payload.products)
         state.page = state.page + 1;
-        if(state.totalPage === 1) {
+        if (state.totalPage === 1) {
           state.totalPage = action.payload.totalPage;
         }
       })

@@ -1,6 +1,6 @@
 'use client'
-import { fetchProductsThunk, reduxStore, selectProductState, selectProducts, selectShowNext, useDispatch, useSelector } from '@/lib/redux'
-
+import { fetchProductsThunk, productSlice, reduxStore, selectProductState, selectProducts, selectShowNext, useDispatch, useSelector } from '@/lib/redux'
+import { useEffect } from "react";
 import { Category, CategoryCards } from '../../app/components/Category'
 import { ProductCatalog } from '../../app/components/ProductCatalog'
 
@@ -26,13 +26,17 @@ const categories: Category[] = [{
   background: 'https://i.dummyjson.com/data/products/7/thumbnail.jpg'
 }]
 
-reduxStore.dispatch(fetchProductsThunk())
 
 export const Home = () => {
   const dispatch = useDispatch()
   const products = useSelector(selectProducts)
   const productState = useSelector(selectProductState)
   const showNext = useSelector(selectShowNext)
+
+  useEffect(() => {
+    dispatch(productSlice.actions.reset())
+    dispatch(fetchProductsThunk())
+  }, [])
 
   return (
     <div className='container mx-auto px-4'>

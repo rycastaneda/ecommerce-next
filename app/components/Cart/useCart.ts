@@ -13,6 +13,7 @@ const useCart = (product: Product | null): {
   onClickCart: () => void;
   onIncrement: (id: number) => void;
   onDecrement: (productToUpdate: CartItem) => void;
+  onRemove: (id: number) => void;
 } => {
 
   const dispatch = useAppDispatch()
@@ -74,6 +75,10 @@ const useCart = (product: Product | null): {
 
   }, [dispatch, cartSlice])
 
+  const onRemove = useCallback((id: number) => {
+      dispatch(cartSlice.actions.delete(id))
+  }, [dispatch, cartSlice])
+
   return {
     cartItems,
     isAddedOnCart,
@@ -81,6 +86,7 @@ const useCart = (product: Product | null): {
     onClickCart,
     onIncrement,
     onDecrement,
+    onRemove,
     showCartMessage,
     setShowCartMessage
   };

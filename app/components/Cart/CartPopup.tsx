@@ -1,14 +1,15 @@
 import { FunctionComponent, useState } from "react";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
 import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import styled from "@emotion/styled";
-import { default as WishlistItem } from "./WishlistItem";
-import { Product } from "@/lib/redux/slices/productSlice/type";
 import { ThemeProvider, createTheme } from '@mui/material'
+import { CartItem } from "@/lib/redux";
+import CartItemPopup from "./CartItemPopup";
 import { Button } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const theme = createTheme({
@@ -20,34 +21,47 @@ const theme = createTheme({
   },
 });
 
-interface WishlistPopupProps {
-  wishlistItems: Product[],
+
+interface CartPopupProps {
+  cartItems: CartItem[],
   onRemove: (id: number) => void
 }
 
-const WishlistPopup: FunctionComponent<WishlistPopupProps> = ({
-  wishlistItems, onRemove,
+const CartPopup: FunctionComponent<CartPopupProps> = ({
+  cartItems, onRemove
 }) => {
   const router = useRouter()
+
   const createHandleMenuClick = (menuItem: number) => {
     return () => {
       router.push(`/product/${menuItem}`)
     };
   };
 
+  const createHandleViewAllClick = () => {
+    return () => {
+      router.push(`/cart`)
+    };
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Dropdown >
+      <Dropdown>
         <MenuButton>
-          <FavoriteIcon className={`${wishlistItems.length ? 'text-primary' : 'text-gray'}`} />
-          <span className={`${wishlistItems.length ? 'text-primary' : 'text-gray'} px-1`}>{wishlistItems.length}</span>
+          <ShoppingCartIcon className={`${cartItems.length ? 'text-primary' : 'text-gray'}`} />
+          <span className={`${cartItems.length ? 'text-primary' : 'text-gray'} "px-1 mx-2`}>{cartItems.length}</span>
         </MenuButton>
         <Menu slots={{ listbox: Listbox }}>
-          {wishlistItems.map(option =>
+          {cartItems.map(option =>
             <MenuItem key={option.id} onClick={createHandleMenuClick(option.id)}>
-              <WishlistItem {...option} onClick={onRemove}/>
+              {option.id && <CartItemPopup {...option} onRemove={onRemove} />}
             </MenuItem>)
           }
+          <MenuItem  onClick={createHandleViewAllClick()} className="text-center my-6 b-1">
+            <Button variant="outlined">
+              <Link href="/cart">View All</Link>
+            </Button>
+          </MenuItem>
         </Menu>
       </Dropdown>
     </ThemeProvider>
@@ -152,4 +166,4 @@ const MenuButton = styled(BaseMenuButton)(
     }
     `,
 );
-export default WishlistPopup;
+export default CartPopup;

@@ -17,7 +17,6 @@ const ProductImages: FunctionComponent<ProductImagesProps> = ({
         { images.map(img => 
           <img key={img} 
             onMouseOver={() => setSelectedImage(img)} 
-            // onMouseOut={() => setSelectedImage(thumbnail)} 
             onClick={() => setSelectedImage(img)} 
             className="w-full aspect-square cursor-pointer" 
             src={img} />

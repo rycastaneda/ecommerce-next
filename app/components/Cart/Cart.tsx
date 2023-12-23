@@ -1,6 +1,6 @@
 import { CartItem } from "@/lib/redux";
 import Link from "next/link";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent } from "react";
 import { default as CartItemComponent}  from "./CartItem";
 
 interface CartProps {

@@ -1,6 +1,7 @@
 import { CartItem } from "@/lib/redux";
 import { FunctionComponent } from "react";
 import { Button } from '@mui/material';
+import Link from "next/link";
 
 interface CartItemProps {
   cartItem: CartItem,
@@ -20,19 +21,21 @@ const CartItem: FunctionComponent<CartItemProps> = ({
     discountedPrice = discountedPrice - (discountedPrice * discountPercentage / 100);
   }
 
-  if(!id) {
+  if (!id) {
     return <></>
   }
 
   return (
     <>
-      <section role="cart-item" className="flex items-center font-bold my-6">
-        <div className="w-48">
+      <section role="cart-item" className="flex items-center font-bold my-6 relative">
+        <div className="w-48 relative">
           <img src={thumbnail} className="aspect-square w-full h-24" alt="" />
+          <Link href={`/product/${id}`} className='after:absolute after:inset-0' />
         </div>
-        <div className="w-full pl-6">
+        <div className="w-full pl-6 relative">
           <h2>{title}</h2>
           <p><span className="text-gray">${price}</span> <span className="text-secondary">${discountedPrice.toFixed(2)}</span></p>
+          <Link href={`/product/${id}`} className='after:absolute after:inset-0' />
         </div>
         <div className="w-48 flex space-x-4 items-center">
           <Button onClick={() => onIncrement(id)} variant="contained">+</Button>
