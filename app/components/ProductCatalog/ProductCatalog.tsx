@@ -37,7 +37,7 @@ const ProductCatalog: FunctionComponent<ProductCatalogProps> = ({
       </div>
       {showNext && 
         <div className='text-center py-8 font-bold'>
-          <Button variant="outlined" onClick={loadNext}> Load Next Products</Button>}
+          <Button variant="outlined" onClick={loadNext}> Load Next Products</Button>
         </div>
       }
     </div>
