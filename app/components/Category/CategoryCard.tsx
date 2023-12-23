@@ -10,7 +10,7 @@ const CategoryCard: FunctionComponent<CategoryCardProps> = ({ itemCount, name, l
   return (
     <div className={`bg-cover font-bold bg-center p-4 ${classNameExt}`} style={{backgroundImage: `url(${background})`}}>
       <span className="text-secondary">{itemCount} Items</span>
-      <h1 className="text-3xl">{name}</h1>
+      <h1 className="lg:text-3xl text-lg">{name}</h1>
       <Link href={`/${link}`}>Read More</Link>
     </div>
   );

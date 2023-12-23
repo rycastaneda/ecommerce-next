@@ -28,7 +28,7 @@ export const Nav = () => {
       >
         Bandage
       </Link>
-      <div className='inline-flex text-gray justify-items-center mr-auto'>
+      <div className='inline-flex text-gray justify-items-center mx-auto lg:ml-0 lg:mr-auto'>
         <Link
           className={`${styles.link} pl-2 ${pathname === '/' ? styles.active : ''
             }`}
