@@ -1,9 +1,8 @@
 'use client'
 import { useParams } from "next/navigation";
-import { ThemeProvider, createTheme, Skeleton, Alert } from '@mui/material'
+import { ThemeProvider, createTheme, Skeleton, Alert, Breadcrumbs, Link, Typography } from '@mui/material'
 import { ProductDetail, ProductImages } from "@/app/components/Product";
 import Description from "@/app/components/Product/Description";
-import Link from "next/link";
 import { ProductCatalog } from "@/app/components/ProductCatalog";
 import useProductDetails from "./useProductDetails";
 import { useCart } from "@/app/components/Cart";
@@ -52,7 +51,7 @@ export default function ProductDetailPage() {
   };
 
   useEffect(() => {
-    if(productDetail) {
+    if (productDetail) {
       document.title = `Ecommerce - ${productDetail?.title}`
     }
   }, [productDetail])
@@ -62,7 +61,21 @@ export default function ProductDetailPage() {
 
       {productDetail &&
         <div className='container px-4 lg:mx-auto lg:my-10 my-6'>
-          <div className="lg:gap-8 lg:grid lg:grid-cols-2">
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link underline="hover" color="inherit" href="/">
+              Home
+            </Link>
+            <Link
+              underline="hover"
+              color="inherit"
+              href="/"
+            >
+              Shop
+            </Link>
+            <Typography color="text.primary">{productDetail.title}</Typography>
+          </Breadcrumbs>
+
+          <div className="lg:gap-8 lg:grid lg:grid-cols-2 mt-6">
             {
               productsState === 'loading' ? <Skeleton variant="rectangular" width={`100%`} height={`100%`} />
                 : <ProductImages thumbnail={productDetail.thumbnail} images={productDetail.images} />
