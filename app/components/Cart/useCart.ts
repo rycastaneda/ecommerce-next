@@ -91,7 +91,7 @@ const useCart = (product: Product | null): {
     onRemove,
     showCartMessage,
     setShowCartMessage,
-    cartTotal: cartTotal.toFixed(2)
+    cartTotal
   };
 }
 

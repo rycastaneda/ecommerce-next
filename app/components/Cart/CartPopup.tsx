@@ -59,7 +59,7 @@ const CartPopup: FunctionComponent<CartPopupProps> = ({
             </MenuItem>)
           }
           <MenuItem  onClick={createHandleViewAllClick()} className="flex items-center justify-between my-6 b-1">
-            <h2 className="font-bold lg:text-xl">Total: <span className="text-secondary">${total}</span></h2>
+            <h2 className="font-bold lg:text-xl">Total: <span className="text-secondary">${total.toFixed(2)}</span></h2>
 
             <Button variant="outlined">
               <Link href="/cart">View All</Link>

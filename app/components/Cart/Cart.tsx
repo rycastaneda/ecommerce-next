@@ -29,7 +29,7 @@ const Cart: FunctionComponent<CartProps> = ({
       {cartItems.map(item => <CartItemComponent onIncrement={onIncrement} onDecrement={onDecrement} key={item.id} cartItem={item} />)}
 
       <div className="flex my-6">
-        <h2 className="ml-auto font-bold lg:text-2xl">Total: <span className="text-secondary">${total}</span></h2>
+        <h2 className="ml-auto font-bold lg:text-2xl">Total: <span className="text-secondary">${total.toFixed(2)}</span></h2>
       </div>
     </div>
 
