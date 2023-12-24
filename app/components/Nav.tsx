@@ -17,7 +17,7 @@ import CartPopup from './Cart/CartPopup'
 export const Nav = () => {
   const pathname = usePathname()
   
-  const {cartItems, onRemove: onRemoveCart} = useCart(null);
+  const {cartItems, cartTotal, onRemove: onRemoveCart} = useCart(null);
   const {wishlistItems, onRemove} = useWishlist(null)
 
   return (
@@ -75,7 +75,7 @@ export const Nav = () => {
           <Link href="/search" className="text-primary px-3 ml-auto lg:ml-0">
             <SearchIcon/>
           </Link>
-          <CartPopup cartItems={cartItems} onRemove={onRemoveCart}/>
+          <CartPopup total={cartTotal} cartItems={cartItems} onRemove={onRemoveCart}/>
           <WishlistPopup wishlistItems={wishlistItems} onRemove={onRemove}/>
         </div>
       </nav>

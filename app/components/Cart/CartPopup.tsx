@@ -24,11 +24,12 @@ const theme = createTheme({
 
 interface CartPopupProps {
   cartItems: CartItem[],
+  total: number,
   onRemove: (id: number) => void
 }
 
 const CartPopup: FunctionComponent<CartPopupProps> = ({
-  cartItems, onRemove
+  cartItems, total, onRemove
 }) => {
   const router = useRouter()
 
@@ -57,7 +58,9 @@ const CartPopup: FunctionComponent<CartPopupProps> = ({
               {option.id && <CartItemPopup {...option} onRemove={onRemove} />}
             </MenuItem>)
           }
-          <MenuItem  onClick={createHandleViewAllClick()} className="text-center my-6 b-1">
+          <MenuItem  onClick={createHandleViewAllClick()} className="flex items-center justify-between my-6 b-1">
+            <h2 className="font-bold lg:text-xl">Total: <span className="text-secondary">${total}</span></h2>
+
             <Button variant="outlined">
               <Link href="/cart">View All</Link>
             </Button>

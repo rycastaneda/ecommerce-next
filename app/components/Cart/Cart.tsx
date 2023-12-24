@@ -5,12 +5,13 @@ import { default as CartItemComponent}  from "./CartItem";
 
 interface CartProps {
   cartItems: CartItem[],
+  total: number;
   onIncrement: (id: number) => void;
   onDecrement: (productToUpdate: CartItem) => void;
 }
 
 const Cart: FunctionComponent<CartProps> = ({
-  cartItems, onIncrement, onDecrement
+  cartItems, onIncrement, onDecrement, total
 }) => {
   return (
     <div className="text-text">
@@ -26,6 +27,10 @@ const Cart: FunctionComponent<CartProps> = ({
       <hr className="mt-6"/>
 
       {cartItems.map(item => <CartItemComponent onIncrement={onIncrement} onDecrement={onDecrement} key={item.id} cartItem={item} />)}
+
+      <div className="flex my-6">
+        <h2 className="ml-auto font-bold lg:text-2xl">Total: <span className="text-secondary">${total}</span></h2>
+      </div>
     </div>
 
   );

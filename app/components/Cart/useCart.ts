@@ -1,4 +1,4 @@
-import { CartItem, cartSlice, selectCartItems, selectCartStatus } from '@/lib/redux';
+import { CartItem, cartSlice, selectCartItems, selectCartStatus, selectTotal } from '@/lib/redux';
 import { useAppDispatch } from '@/lib/redux/createAppAsyncThunk';
 import { Product } from '@/lib/redux/slices/productSlice/type';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -14,11 +14,13 @@ const useCart = (product: Product | null): {
   onIncrement: (id: number) => void;
   onDecrement: (productToUpdate: CartItem) => void;
   onRemove: (id: number) => void;
+  cartTotal: number;
 } => {
 
   const dispatch = useAppDispatch()
   const cartItems = useSelector(selectCartItems);
   const cartStatus = useSelector(selectCartStatus);
+  const cartTotal = useSelector(selectTotal);
   const [showCartMessage, setShowCartMessage] = useState(false)
 
   useEffect(() => {
@@ -88,7 +90,8 @@ const useCart = (product: Product | null): {
     onDecrement,
     onRemove,
     showCartMessage,
-    setShowCartMessage
+    setShowCartMessage,
+    cartTotal: cartTotal.toFixed(2)
   };
 }
 
